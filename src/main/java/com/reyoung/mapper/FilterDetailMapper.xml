@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.reyoung.dao.FilterDetailDao">
+
+    <insert id="addfilterdetailbylist" parameterType="java.util.List" useGeneratedKeys="false">
+
+        insert into filterdetail(fdetailname,fdetailsize,fdgree,fdetailinterface,fherpin,fdetailnum,useing,fid)
+
+        values
+
+        <foreach collection="filterDetails" item="item" index="index" separator=",">
+
+            (
+            #{item.fdetailname},
+            #{item.fdetailsize},
+            #{item.fdgree},
+            #{item.fdetailinterface},
+            #{item.fherpin},
+            #{item.fdetailnum},
+            #{item.useing},
+            #{item.fid}
+            )
+
+        </foreach>
+
+    </insert>
+
+    <delete id="delfilterdetailbylist" parameterType="java.util.List">
+
+        DELETE FROM filterdetail WHERE fdetailid IN
+
+        <foreach collection="filterDetails" item="item" index="index" separator="," open="(" close=")">
+
+        #{item.fdetailid}
+
+        </foreach>
+
+    </delete>
+
+    <select id="findfilterdetailbyfid" parameterType="com.reyoung.model.FilterPlan" resultMap="filterdetailMap">
+
+        SELECT * FROM filterdetail WHERE fid=#{filterid}
+
+    </select>
+
+    <resultMap id="filterdetailMap" type="com.reyoung.model.FilterDetail">
+
+        <id column="fdetailid" property="fdetailid" />
+        <result column="fdetailname" property="fdetailname" />
+        <result column="fdetailsize" property="fdetailsize" />
+        <result column="fdgree" property="fdgree" />
+        <result column="fdetailinterface" property="fdetailinterface" />
+        <result column="fherpin" property="fherpin" />
+        <result column="fdetailnum" property="fdetailnum" />
+        <result column="useing" property="useing" />
+        <result column="fid" property="fid" />
+
+    </resultMap>
+
+</mapper>

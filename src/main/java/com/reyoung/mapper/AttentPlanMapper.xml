@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.reyoung.dao.AttentPlanDao">
+
+    <insert id="addattentplan" parameterType="com.reyoung.model.AttentPlan" useGeneratedKeys="true" keyProperty="attentId" keyColumn="attentId">
+
+        INSERT INTO attentpaln(userid,attenttitle,applyperson,applyabstract,receive,applytime,applytime1,buyreson,attentrequire) VALUES (#{user.uid},#{attenttitle},#{applyperson},#{applyabstract},#{receive},#{applytime},#{applytime1},#{buyreson},#{attentrequire});
+
+    </insert>
+
+    <select id="findattentplanbyflowinfos" parameterType="com.reyoung.model.Flowinfos" resultMap="attentplanMap">
+
+        SELECT
+        a.attentId,
+        a.attenttitle,
+        a.applyperson,
+        a.applyabstract,
+        a.receive,
+        a.applytime,
+        a.applytime1,
+        a.buyreson,
+        a.attentrequire,
+        u.uid,
+        u.username,
+        u.`password`,
+        u.truename,
+        u.position,
+        u.department,
+        u.signaturepath,
+        u.email,
+        u.section,
+        u.chapter,
+        u.uppastime,
+        d.deptid,
+        d.deptname,
+        e.posid,
+        e.posname,
+        e.approflag,
+        e.agreeflag,
+        e.backflag,
+        s.sectionid,
+        s.sectionname
+        FROM
+        attentpaln a,
+        user u,
+        department d,
+        section s,
+        position e
+        WHERE
+        a.userid=u.uid
+        AND
+        u.section=s.sectionid
+        AND
+        u.department=d.deptid
+        AND
+        u.position=e.posid
+        AND
+        a.attentId=#{incident};
+
+    </select>
+
+    <delete id="delattentplanbyaid" parameterType="com.reyoung.model.AttentPlan">
+
+        DELETE FROM attentpaln WHERE attentId=#{attentId};
+
+    </delete>
+
+    <resultMap id="attentplanMap" type="com.reyoung.model.AttentPlan">
+
+        <id column="attentId" property="attentId" />
+        <result column="userid" property="user.uid" />
+        <result column="attenttitle" property="attenttitle" />
+        <result column="applyperson" property="applyperson" />
+        <result column="applyabstract" property="applyabstract" />
+        <result column="receive" property="receive" />
+        <result column="applytime" property="applytime" />
+        <result column="applytime1" property="applytime1" />
+        <result column="buyreson" property="buyreson" />
+        <result column="attentrequire" property="attentrequire" />
+
+        <association property="user" javaType="com.reyoung.model.User">
+
+            <id column="uid" property="uid" />
+            <result column="username" property="username" />
+            <result column="password" property="password" />
+            <result column="truename" property="truename" />
+            <result column="position" property="position.posid" />
+            <result column="department" property="department.deptid" />
+            <result column="signaturepath" property="signaturepath" />
+            <result column="email" property="email" />
+            <result column="chapter" property="chapter" />
+            <result column="uppastime" property="uppastime" />
+            <result column="section" property="section.sectionid" />
+
+            <association property="department" javaType="com.reyoung.model.Department">
+
+                <id column="deptid" property="deptid" />
+                <result column="deptname" property="deptname" />
+
+            </association>
+
+            <association property="position" javaType="com.reyoung.model.Position">
+
+                <id column="posid" property="posid"  />
+                <result column="posname" property="posname" />
+                <result column="approflag" property="approflag" />
+                <result column="agreeflag" property="agreeflag" />
+                <result column="backflag" property="backflag" />
+
+            </association>
+
+            <association property="section" javaType="com.reyoung.model.Section">
+
+                <id column="sectionid" property="sectionid" />
+                <result column="sectionname" property="sectionname" />
+
+            </association>
+
+        </association>
+
+    </resultMap>
+
+</mapper>
