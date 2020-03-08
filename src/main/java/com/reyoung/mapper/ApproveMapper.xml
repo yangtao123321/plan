@@ -37,6 +37,7 @@
         b.section,
         b.chapter,
         b.uppastime,
+        b.fdate,
         c.flowinfoid,
         c.flowabstract,
         c.person,
@@ -82,6 +83,7 @@
         b.section,
         b.chapter,
         b.uppastime,
+        b.fdate,
         c.flowinfoid,
         c.flowabstract,
         c.person,
@@ -129,6 +131,7 @@
         b.uppastime,
         b.section,
         b.chapter,
+        b.fdate,
         c.flowinfoid,
         c.flowabstract,
         c.person,
@@ -179,6 +182,7 @@
         b.uppastime,
         b.section,
         b.chapter,
+        b.fdate,
         c.flowinfoid,
         c.flowabstract,
         c.person,
@@ -249,6 +253,7 @@
             <result column="email" property="email" />
             <result column="chapter" property="chapter" />
             <result column="uppastime" property="uppastime" />
+            <result column="fdate" property="fdate" />
             <result column="section" property="section.sectionid" />
 
             <association property="department" javaType="com.reyoung.model.Department">

@@ -32,6 +32,7 @@
         u.department,
         u.signaturepath,
         u.uppastime,
+        u.fdate,
         u.email,
         u.section,
         u.chapter,
@@ -94,13 +95,14 @@
             <result column="signaturepath" property="signaturepath" />
             <result column="email" property="email" />
             <result column="uppastime" property="uppastime" />
+            <result column="fdate" property="fdate" />
             <result column="section" property="section.sectionid" />
             <result column="chapter" property="chapter" />
 
             <association property="department" javaType="com.reyoung.model.Department">
 
-                <id column="deptid" property="deptid" />
-                <result column="deptname" property="deptname" />
+            <id column="deptid" property="deptid" />
+            <result column="deptname" property="deptname" />
 
             </association>
 

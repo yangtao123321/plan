@@ -31,4 +31,8 @@ public interface UserDao {
 
     public Integer updatedefaultpassword(User user);
 
+    public List<User> findnoticeuser();
+
+    public Integer updatefdate(User user);
+
 }

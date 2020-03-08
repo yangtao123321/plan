@@ -989,7 +989,7 @@ public class FilterController {
 
             String subject="计划拒绝提醒";
 
-            String context= "<font face='Terminal' style='font-size:19px'><span style='color: black;'>"+flowinfos1.getUser().getTruename()+",您好。</span><br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;贵单位提报的计划 &nbsp;&nbsp;&nbsp;实例号:"+flowinfos1.getFlowinfoid()+"&nbsp;&nbsp;&nbsp;名称:<span style='color:#00a400;'>"+flowinfos1.getFlowabstract()+"</span>&nbsp;&nbsp;&nbsp;已被<span style='color: red;'>"+user.getTruename()+"</span>拒绝，原因:"+approve.getSuggest()+"<br><br>&nbsp;&nbsp;&nbsp;请关注!</font>";
+            String context="<font face='Terminal' style='font-size:19px'><span style='color: black;'>"+flowinfos1.getUser().getTruename()+",您好。</span><br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;贵单位提报的计划 &nbsp;&nbsp;&nbsp;实例号:"+flowinfos1.getFlowinfoid()+"&nbsp;&nbsp;&nbsp;名称:<span style='color:#00a400;'>"+flowinfos1.getFlowabstract()+"</span>&nbsp;&nbsp;&nbsp;已被<span style='color: red;'>"+user.getTruename()+"</span>拒绝，原因:"+approve.getSuggest()+"<br><br>&nbsp;&nbsp;&nbsp;请关注!</font>";
 
             TextMail.sendMail("yangtao@reyoung.com","YANGyang136164","192.168.8.3",list,"yangtao@reyoung.com",subject,context);
 

@@ -15,6 +15,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -23,6 +24,9 @@ import java.util.List;
 @Service("flowinfosService")
 @DataSource("dataSource")
 public class FlowinfosServiceImpl implements FlowinfosService {
+
+    @Resource(name = "userDao")
+    private UserDao userDao;
 
     @Resource(name = "flowinfosDao")
     private FlowinfosDao flowinfosDao;
@@ -2802,6 +2806,135 @@ public class FlowinfosServiceImpl implements FlowinfosService {
         pageBean.setList(flowinfoses1);
 
         return pageBean;
+
+    }
+
+    @Override
+    public List<Flowinfos> findnofinishedflowinfos() {
+
+        try {
+
+        List<User> users = userDao.findnoticeuser();
+
+        for (User u:users) {
+
+            List<Flowinfos> flowinfoses = flowinfosDao.findnofinishedflowinfos();
+
+            List<Flowinfos> flowinfoses1=new ArrayList<>();
+
+            for (Flowinfos flowinfos:flowinfoses) {
+
+                if (flowinfos.getUser().getSection().getSectionid()==1) {//粉针事业部
+
+                    if (flowinfos.getFlows().getFlowid()==1) {//滤芯计划,张主任需要审批功能需要+1;
+
+                        if ((flowinfos.getFlag()==u.getPosition().getApproflag()+1)&&(u.getUsername().equals("zhangna"))&&(u.getPosition().getPosid()==2)) {//文件小组负责人
+
+                            flowinfoses1.add(flowinfos);
+
+
+                        }else if ((flowinfos.getFlag()==u.getPosition().getApproflag())&&(u.getPosition().getPosid()==2)) {//单位负责人
+
+                            if (u.getDepartment().getDeptid()==flowinfos.getUser().getDepartment().getDeptid()) {
+
+                                flowinfoses1.add(flowinfos);
+
+                            }
+
+                        }else if ((flowinfos.getFlag()==u.getPosition().getApproflag()+2)&&(u.getPosition().getPosid()==3)) {//部门经理
+
+                            flowinfoses1.add(flowinfos);
+
+                        }
+
+                    }else {
+
+                        if ((flowinfos.getFlag()==u.getPosition().getApproflag())&&(u.getPosition().getPosid()==2)) {//单位负责人
+
+                            if (u.getDepartment().getDeptid()==flowinfos.getUser().getDepartment().getDeptid()) {
+
+                                flowinfoses1.add(flowinfos);
+
+                            }
+
+
+                        }else if ((flowinfos.getFlag()==u.getPosition().getApproflag())&&(u.getPosition().getPosid()==3)) {
+
+                            flowinfoses1.add(flowinfos);
+
+                        }
+                    }
+                }
+
+            }
+
+            //遍历完成后需要将flowinfos添加到user中
+            u.setFlowinfoses(flowinfoses1);
+
+        }
+
+        //筛选出未处理计划大于等于10条的人员,每天发送一次邮件的提醒
+        List<User> list=new ArrayList<>();
+
+        for (User user:users) {
+
+            if (user.getFlowinfoses().size()>=3) {
+
+                list.add(user);
+
+            }
+
+        }
+
+            for (User user:list) {
+
+                String s = GetYear.getnowymd(new Date());
+
+                String s1 =user.getFdate()==null?"":GetYear.getnowymd(user.getFdate());
+
+                if (user.getFdate()==null||(!s.equals(s1))) {//当fdate==null 或者 日期跟今天的不一样 可以发送邮件提醒
+
+                    String subject="粉针BPM计划审批提醒";
+
+                    String planinfo="";
+
+                    Integer c=1;
+
+                    for (Flowinfos flowinfos:user.getFlowinfoses()) {
+
+                        planinfo=planinfo+"第"+c+"条:&nbsp;<span style='color:red;font-weight:bold'>"+flowinfos.getFlowabstract()+"</span>,&nbsp;提报人:"+flowinfos.getPerson()+",&nbsp;提报单位:"+flowinfos.getUser().getDepartment().getDeptname()+"<br /><br />&nbsp;&nbsp;&nbsp;";
+
+                        c++;
+
+                    }
+
+                    String context="<font face='楷体' style='font-size:19px'><span style='font-weight:bold'>"+user.getTruename()+",您好!</span><br /><br />&nbsp;&nbsp;&nbsp;您有"+user.getFlowinfoses().size()+"条计划需要审批,信息如下:<br /><br />&nbsp;&nbsp;&nbsp;"+planinfo+"<br /><br />&nbsp;&nbsp;&nbsp;请及时处理!</font>";
+
+                    TextMail1.sendMail("yangtao@reyoung.com","YANGyang136164","192.168.8.3",user,"",subject,context);
+
+                    user.setFdate(new Date());
+
+                    Integer r = userDao.updatefdate(user);
+
+                }
+
+            }
+
+        } catch (Exception e) {
+
+            List<String> list=new ArrayList<>();
+
+            list.add("yangtao@reyoung.com");
+
+            TextMail.sendMail("yangtao@reyoung.com","YANGyang136164","192.168.8.3",null,"yangtao","待办任务提醒失败!","计划审批提醒邮件发送失败!");
+
+        }finally {
+
+            return null;
+
+        }
+
+
 
     }
 

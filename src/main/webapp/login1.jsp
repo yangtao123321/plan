@@ -32,8 +32,6 @@
 
             });
 
-            //getcookieinfo();
-
             $(".cancel").click(function() {
 
                 $(".usernameval").val("");

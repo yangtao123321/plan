@@ -31,6 +31,7 @@
         u.signaturepath,
         u.email,
         u.uppastime,
+        u.fdate,
         u.section,
         u.chapter,
         d.deptid,
@@ -90,6 +91,7 @@
             <result column="signaturepath" property="signaturepath" />
             <result column="email" property="email" />
             <result column="uppastime" property="uppastime" />
+            <result column="fdate" property="fdate" />
             <result column="chapter" property="chapter" />
             <result column="section" property="section.sectionid" />
 

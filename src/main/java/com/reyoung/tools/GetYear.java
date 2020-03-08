@@ -70,7 +70,6 @@ public class GetYear {
 
     }
 
-
     //在Linux系统中获取生成文件的中文名称
     public static String getfilename() {
 
@@ -82,14 +81,24 @@ public class GetYear {
 
     }
 
+    public static String getnowymd(Date d) {
 
+        SimpleDateFormat sdf=new SimpleDateFormat("yyyyMMdd");
 
+        return sdf.format(d);
 
+    }
 
+    public static Integer getHour() {
 
+        Date date=new Date();
 
+        SimpleDateFormat sdf=new SimpleDateFormat("HH");
 
+        String s = sdf.format(date);
 
+        return Integer.valueOf(s);
 
+    }
 
 }

@@ -29,6 +29,7 @@
         `user`.email,
         `user`.chapter,
         `user`.uppastime,
+        `user`.fdate,
         department.deptid,
         department.deptname,
         position.posid,
@@ -69,6 +70,7 @@
         `user`.email,
         `user`.chapter,
         `user`.uppastime,
+        `user`.fdate,
         department.deptid,
         department.deptname,
         position.posid,
@@ -103,6 +105,7 @@
         `user`.email,
         `user`.chapter,
         `user`.uppastime,
+        `user`.fdate,
         department.deptid,
         department.deptname,
         position.posid,
@@ -138,6 +141,7 @@
         `user`.email,
         `user`.chapter,
         `user`.uppastime,
+        `user`.fdate,
         department.deptid,
         department.deptname,
         position.posid,
@@ -173,6 +177,7 @@
         `user`.email,
         `user`.chapter,
         `user`.uppastime,
+        `user`.fdate,
         department.deptid,
         department.deptname,
         position.posid,
@@ -195,6 +200,40 @@
 
     </select>
 
+    <select id="findnoticeuser" resultMap="userMap">
+
+        SELECT
+        `user`.uid,
+        `user`.username,
+        `user`.`password`,
+        `user`.truename,
+        `user`.signaturepath,
+        `user`.email,
+        `user`.chapter,
+        `user`.uppastime,
+        `user`.fdate,
+        department.deptid,
+        department.deptname,
+        position.posid,
+        position.posname,
+        position.approflag,
+        position.agreeflag,
+        position.backflag,
+        section.sectionid,
+        section.sectionname
+        FROM
+        `user`,
+        department,
+        section,
+        position
+        WHERE
+        position.posid = `user`.position
+        AND `user`.department = department.deptid
+        AND section.sectionid = `user`.section
+        AND `user`.position IN (2,3);
+
+    </select>
+
     <update id="updatepas" parameterType="com.reyoung.model.User">
 
         UPDATE user SET password=#{password} WHERE username=#{username};
@@ -204,6 +243,12 @@
     <update id="updatedefaultpassword" parameterType="com.reyoung.model.User">
 
         UPDATE user SET password=#{password},uppastime=1 WHERE uid=#{uid};
+
+    </update>
+
+    <update id="updatefdate" parameterType="com.reyoung.model.User">
+
+        UPDATE user SET fdate=#{fdate} WHERE uid=#{uid};
 
     </update>
 
@@ -219,6 +264,7 @@
         <result column="email" property="email" />
         <result column="chapter" property="chapter" />
         <result column="uppastime" property="uppastime" />
+        <result column="fdate" property="fdate" />
 
         <association property="department" javaType="com.reyoung.model.Department">
 
@@ -241,8 +287,6 @@
 
             <id column="sectionid" property="sectionid" />
             <result column="sectionname" property="sectionname" />
-
-
 
         </association>
 

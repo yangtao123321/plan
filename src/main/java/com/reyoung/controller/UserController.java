@@ -161,7 +161,7 @@ public class UserController {
 
             request.getSession().setAttribute("userinfo",user1);//将用户信息保存到session域中
 
-            request.getSession().setMaxInactiveInterval(60*60);//设置session 1小时候后 失效
+            request.getSession().setMaxInactiveInterval(60*60*24);//设置session 24小时候后 失效
 
             String json = JSONObject.toJSONString(user1, SerializerFeature.WriteMapNullValue);
 
@@ -253,8 +253,6 @@ public class UserController {
 
 
                 }
-
-
 
             }else if (user.getPosition().getPosname().equals("单位负责人")) {
 

@@ -1193,7 +1193,7 @@
             font-size: 16px;
             margin-left: 1%;
             float: left;
-            width: 6%;
+            width: 7%;
             font-family: "楷体";
 
         }
@@ -1201,7 +1201,7 @@
         .uppas{
 
             position: relative;
-            margin-left: 5%;
+            margin-left: 4.5%;
             height: 30px;
             width: 70px;
             margin-top: 9px;
@@ -1245,7 +1245,6 @@
             color: #008dd1;
             width: 10%;
             cursor: pointer;
-
         }
 
         .mai{

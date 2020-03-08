@@ -8,6 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
+
     <title>hello word</title>
 
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.3.1.min.js" language="JavaScript"></script>
@@ -32,7 +33,30 @@
 
         var height=window.screen.height;
 
+        (function kaiqi() {
+
+            //每次访问的时候启动邮件提醒的功能
+            $.ajax({
+                url:"${pageContext.request.contextPath}/sendemailtonoticesomedoingtask.do",
+                type:"post",
+                async:false,
+                data:{},
+                datatype:"json",
+                success:function(data) {
+
+
+
+                }
+
+
+            });
+
+        }());
+
         $(function() {
+
+
+
 
             if(IEVersion()==8||IEVersion()==9) {
 
@@ -48,8 +72,6 @@
 
             }else if(IEVersion()<=7&&IEVersion()!=-1) {//建议更换高版本的浏览器
 
-
-
             }else{//高版本的浏览器
 
                 if(width<=1400) {
@@ -63,8 +85,6 @@
                 }
 
             }
-
-
 
             //如果width小于1400 则认为是小屏幕电脑
 

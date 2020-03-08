@@ -1,5 +1,8 @@
 package com.reyoung.model;
 
+import java.util.Date;
+import java.util.List;
+
 /**
  * Created by yangtao on 2019-12-27.
  */
@@ -29,10 +32,15 @@ public class User {
 
     private Integer uppastime;
 
+    private Date fdate;
+
+    //添加未完成流程的列表,该字段数据库不添加
+    private List<Flowinfos> flowinfoses;
+
     public User() {
     }
 
-    public User(Integer uid, String username, String password, String truename, Position position, Department department, String signaturepath, String email, Section section, String savefalg, String chapter, Integer uppastime) {
+    public User(Integer uid, String username, String password, String truename, Position position, Department department, String signaturepath, String email, Section section, String savefalg, String chapter, Integer uppastime, Date fdate, List<Flowinfos> flowinfoses) {
         this.uid = uid;
         this.username = username;
         this.password = password;
@@ -45,6 +53,8 @@ public class User {
         this.savefalg = savefalg;
         this.chapter = chapter;
         this.uppastime = uppastime;
+        this.fdate = fdate;
+        this.flowinfoses = flowinfoses;
     }
 
     public Integer getUid() {
@@ -143,6 +153,22 @@ public class User {
         this.uppastime = uppastime;
     }
 
+    public List<Flowinfos> getFlowinfoses() {
+        return flowinfoses;
+    }
+
+    public void setFlowinfoses(List<Flowinfos> flowinfoses) {
+        this.flowinfoses = flowinfoses;
+    }
+
+    public Date getFdate() {
+        return fdate;
+    }
+
+    public void setFdate(Date fdate) {
+        this.fdate = fdate;
+    }
+
     @Override
     public String toString() {
         return "User{" +
@@ -158,6 +184,8 @@ public class User {
                 ", savefalg='" + savefalg + '\'' +
                 ", chapter='" + chapter + '\'' +
                 ", uppastime=" + uppastime +
+                ", fdate=" + fdate +
+                ", flowinfoses=" + flowinfoses +
                 '}';
     }
 

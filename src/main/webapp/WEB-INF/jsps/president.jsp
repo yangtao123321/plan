@@ -1061,6 +1061,9 @@
             width: 6%;
             font-family: "Microsoft YaHei";
 
+
+            border: 1px solid red;
+
         }
 
         .uppas{

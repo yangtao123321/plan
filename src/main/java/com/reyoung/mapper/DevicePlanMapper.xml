@@ -34,6 +34,7 @@
         u.uppastime,
         u.section,
         u.chapter,
+        u.fdate,
         d.deptid,
         d.deptname,
         e.posid,
@@ -93,6 +94,7 @@
             <result column="email" property="email" />
             <result column="chapter" property="chapter" />
             <result column="uppastime" property="uppastime" />
+            <result column="fdate" property="fdate" />
             <result column="section" property="section.sectionid" />
 
             <association property="department" javaType="com.reyoung.model.Department">

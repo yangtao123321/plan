@@ -33,4 +33,6 @@ public interface FlowinfosDao {
     //根据fid删除flowinfos
     public Integer delflowinfosbyfid(Flowinfos flowinfos);
 
+    public List<Flowinfos> findnofinishedflowinfos();
+
 }

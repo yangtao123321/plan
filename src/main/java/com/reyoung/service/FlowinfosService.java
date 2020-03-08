@@ -6,6 +6,7 @@ import com.reyoung.model.User;
 import com.reyoung.pager.PageBean;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 /**
  * Created by yangtao on 2020-01-16.
@@ -55,5 +56,7 @@ public interface FlowinfosService {
     public PageBean<Flowinfos> findallflowinfolist(PageBean<Flowinfos> pageBean);
 
     public PageBean<Flowinfos> findflowinfosbyid(Flowinfos flowinfos,PageBean<Flowinfos> pageBean);
+
+    public List<Flowinfos> findnofinishedflowinfos();
 
 }
