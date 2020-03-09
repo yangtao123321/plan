@@ -60,6 +60,29 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public List<User> finduserdunitlist(User user) {
+
+        List<User> list = userDao.finduserdunitlist(user);
+
+        if (user.getDepartment().getDeptname().equals("307车间")) {//添加一个单位负责人管理两个及以上单位的情况
+
+            User user1 = userDao.finduserbyuid(6);
+
+            list.add(user1);
+
+        }else if (user.getDepartment().getDeptname().equals("207车间")) {
+
+            User user1 = userDao.finduserbyuid(19);
+
+            list.add(user1);
+
+        }
+
+        return list;
+
+    }
+
+    @Override
     public User finduserbyuid(Integer uid) {
         return userDao.finduserbyuid(uid);
     }

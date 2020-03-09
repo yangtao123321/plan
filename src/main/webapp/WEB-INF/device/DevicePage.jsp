@@ -47,10 +47,6 @@
 
                     alert("名称不能为空!");
 
-                }else if(devicenamebank=='') {
-
-                    alert("品牌不能为空!");
-
                 }else if(devicenum=='') {
 
                     alert("数量不能为空!");
@@ -58,7 +54,7 @@
                 }
 
 
-                if(devicename!=''&&devicenamebank!=''&&devicenum!='') {//可以进行添加的操作
+                if(devicename!=''&&devicenum!='') {//可以进行添加的操作
 
                    var tb=$(".devicelisttb");
 

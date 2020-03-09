@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.util.*;
+import java.util.Random;
 
 /**
  * Created by yangtao on 2020-02-12.
@@ -339,6 +339,15 @@ public class OtherTools {
 
             elements.setAlignment(Element.ALIGN_CENTER);
 
+            Image chapter = Image.getInstance(request.getSession().getServletContext().getRealPath(flowinfos.getUser().getChapter()));
+
+            chapter.scaleToFit(105,105);
+
+            //设置绝对路径
+            chapter.setAbsolutePosition(210,700);
+
+            d.add(chapter);
+
             d.add(elements);
 
             //设置对文本进行绝对定位
@@ -357,7 +366,6 @@ public class OtherTools {
             //设置对文本的定位
 
             //各单位的章
-            Image chapter = Image.getInstance(request.getSession().getServletContext().getRealPath(flowinfos.getUser().getChapter()));
 
             Image img = Image.getInstance(zhangzong);
 
@@ -369,11 +377,6 @@ public class OtherTools {
 
             //设置绝对路径
             img.setAbsolutePosition(90,360);
-
-            chapter.scaleToFit(105,105);
-
-            //设置绝对路径
-            chapter.setAbsolutePosition(210,700);
 
             //创建表格对象
             PdfPTable datatable = new PdfPTable(6);
@@ -455,8 +458,6 @@ public class OtherTools {
 
             d.add(datatable);
 
-            d.add(chapter);
-
             d.close();
 
         }catch (Exception e) {
@@ -525,6 +526,15 @@ public class OtherTools {
 
             elements.setAlignment(Element.ALIGN_CENTER);
 
+            Image chapter = Image.getInstance(request.getSession().getServletContext().getRealPath(flowinfos.getUser().getChapter()));
+
+            chapter.scaleToFit(105,105);
+
+            //设置绝对路径
+            chapter.setAbsolutePosition(210,700);
+
+            d.add(chapter);
+
             d.add(elements);
 
             //设置对文本进行绝对定位
@@ -543,8 +553,6 @@ public class OtherTools {
             //设置对文本的定位
 
             //各单位的章
-            Image chapter = Image.getInstance(request.getSession().getServletContext().getRealPath(flowinfos.getUser().getChapter()));
-
             Image img = Image.getInstance(zhangzong);
 
             Image a=Image.getInstance(dunit);
@@ -559,11 +567,6 @@ public class OtherTools {
 
             //设置绝对路径
             img.setAbsolutePosition(90,360);
-
-            chapter.scaleToFit(105,105);
-
-            //设置绝对路径
-            chapter.setAbsolutePosition(210,700);
 
             //创建表格对象
             PdfPTable datatable = new PdfPTable(6);
@@ -652,8 +655,6 @@ public class OtherTools {
             d.add(datatable);
 
             d.add(datatable1);
-
-            d.add(chapter);
 
             d.close();
 

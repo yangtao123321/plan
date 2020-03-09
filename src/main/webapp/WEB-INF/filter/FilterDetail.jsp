@@ -40,7 +40,6 @@
 
         });
 
-
     </script>
 
     <style type="text/css">
@@ -105,7 +104,7 @@
 
         .tr1:hover{
 
-            background-color: rgba(240, 255, 239, 0.50);
+            background-color: #f0ffef;
 
             color:blue;
 
@@ -115,7 +114,7 @@
 
         input:hover{
 
-            background-color: rgba(240, 255, 239, 0.50);
+            background-color: #f0ffef;
 
             color:blue;
 
@@ -181,7 +180,7 @@
 
         .a:hover{
 
-            background-color: rgba(240, 255, 239, 0.50);
+            background-color: #f0ffef;
 
             color:blue;
 
@@ -325,11 +324,10 @@
 
                                 </c:choose>
                                 <td>${approve.dealtime}</td>
-                                <td style="color: #e70000;font-weight: bold">${approve.suggest}</td>
+                                <td style="color: #e70000;font-weight: bold;background-color: white">${approve.suggest}</td>
                                 <td style="height: 50px;border-right: none"><img width="100%" height="100%" src="${pageContext.request.contextPath}${approve.signature}" /></td>
 
                             </c:when>
-
 
                             <c:when test="${approve.user.position.posid==3}">
 
@@ -350,11 +348,10 @@
 
                                 </c:choose>
                                 <td>${approve.dealtime}</td>
-                                <td style="color: #e70000;font-weight: bold">${approve.suggest}</td>
+                                <td style="color: #e70000;font-weight: bold;background-color: white">${approve.suggest}</td>
                                 <td style="height: 50px;border-right: none"><img width="100%" height="100%" src="${pageContext.request.contextPath}${approve.signature}" /></td>
 
                             </c:when>
-
 
                             <c:when test="${approve.user.position.posid==4}">
 

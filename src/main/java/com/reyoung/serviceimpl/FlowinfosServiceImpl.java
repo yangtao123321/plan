@@ -1104,7 +1104,7 @@ public class FlowinfosServiceImpl implements FlowinfosService {
 
                 }
 
-            }else if (user.getPosition().getPosid()==2) {
+            }else if (user.getPosition().getPosid()==2) {//单位负责人审核
 
                 for (Approve a:approves) {
 
@@ -1137,7 +1137,27 @@ public class FlowinfosServiceImpl implements FlowinfosService {
 
                     Integer r = flowinfosDao.updateflowinfobyflowinfoid(f);
 
-                    if (r==1) {
+                    if (r==1) {//单位负责人审批完成滤芯计划了,发送邮件给文件小组负责人
+
+                        User user1 = userDao.findwenjianfuzeren();
+
+                        List<User> list=new ArrayList<>();
+
+                        list.add(user1);
+
+                        String subject="计划审批提醒";
+
+                        String context="<font face='楷体' style='font-size:19px'><span style='font-weight:bold'>"+user1.getTruename()+",您好!</span><br /><br />&nbsp;&nbsp;&nbsp;您有1条计划需要审批,信息如下:<br /><br />&nbsp;&nbsp;&nbsp;内容摘要:&nbsp;<span style='color:red;font-weight:bold'>"+flowinfos.getFlowabstract()+"</span>,&nbsp;提报人:"+flowinfos.getPerson()+",&nbsp;提报单位:"+flowinfos.getUser().getDepartment().getDeptname()+"!<br /><br />&nbsp;&nbsp;&nbsp;请及时处理!</font>";
+
+                        try {
+
+                            TextMail2.sendMail("yangtao@reyoung.com", "YANGyang136164", "192.168.8.3", list, "", subject, context);
+
+                        } catch (Exception e) {
+
+
+
+                        }
 
                         return 1;
 
@@ -1201,7 +1221,7 @@ public class FlowinfosServiceImpl implements FlowinfosService {
 
                                 }else{
 
-                                    mails.add("sangyunguo@reyoung.com");
+                                    //mails.add("sangyunguo@reyoung.com");
 
                                 }
 
@@ -1230,7 +1250,7 @@ public class FlowinfosServiceImpl implements FlowinfosService {
 
                             Mail.sendMail("yangtao@reyoung.com","YANGyang136164","192.168.8.3",flowinfos.getUser().getEmail(),list,subject,context,file);
 
-                            //file.delete();
+                            file.delete();
 
                             return 1;
 
@@ -1378,7 +1398,7 @@ public class FlowinfosServiceImpl implements FlowinfosService {
 
                             Mail.sendMail("yangtao@reyoung.com","YANGyang136164","192.168.8.3",flowinfos.getUser().getEmail(),list,subject,context,file);
 
-                            //file.delete();
+                            file.delete();
 
                             return 1;
 
@@ -1415,7 +1435,7 @@ public class FlowinfosServiceImpl implements FlowinfosService {
                             Mail.sendMail("yangtao@reyoung.com","YANGyang136164","192.168.8.3",flowinfos.getUser().getEmail(),list,subject,context,file);
 
                             //邮件发送完成后将文件删除
-                            //file.delete();
+                            file.delete();
 
                             return 1;
 
@@ -1562,7 +1582,7 @@ public class FlowinfosServiceImpl implements FlowinfosService {
 
                             Mail.sendMail("yangtao@reyoung.com","YANGyang136164","192.168.8.3",flowinfos.getUser().getEmail(),list,subject,context,file);
 
-                            //file.delete();
+                            file.delete();
 
                             return 1;
 
@@ -1600,7 +1620,7 @@ public class FlowinfosServiceImpl implements FlowinfosService {
 
                             Mail.sendMail("yangtao@reyoung.com","YANGyang136164","192.168.8.3",flowinfos.getUser().getEmail(),list,subject,context,file);
 
-                            //file.delete();
+                            file.delete();
 
                             return 1;
 

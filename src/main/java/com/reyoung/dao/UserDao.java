@@ -35,4 +35,6 @@ public interface UserDao {
 
     public Integer updatefdate(User user);
 
+    public List<User> finduserdunitlist(User user);
+
 }

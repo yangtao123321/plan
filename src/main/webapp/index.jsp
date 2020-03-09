@@ -7,6 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
+
 <head>
 
     <title>hello word</title>
@@ -55,9 +56,6 @@
 
         $(function() {
 
-
-
-
             if(IEVersion()==8||IEVersion()==9) {
 
                 if(width<=1400) {
@@ -87,8 +85,6 @@
             }
 
             //如果width小于1400 则认为是小屏幕电脑
-
-
 
         });
 
@@ -125,7 +121,9 @@
 
 
 </head>
+
 <body>
 
 </body>
+
 </html>

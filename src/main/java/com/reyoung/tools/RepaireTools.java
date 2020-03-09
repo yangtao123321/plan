@@ -26,7 +26,7 @@ public class RepaireTools {
 
             //STFANGSO.TTF
 
-            String pat = request.getSession().getServletContext().getRealPath("/font/simkai.ttf");
+            String pat = request.getSession().getServletContext().getRealPath("/font/STFANGSO.TTF");
 
             bf = BaseFont.createFont(pat,
                     BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
@@ -53,7 +53,7 @@ public class RepaireTools {
 
         try {
 
-            String pat = request.getSession().getServletContext().getRealPath("/font/simkai.ttf");
+            String pat = request.getSession().getServletContext().getRealPath("/font/STFANGSO.TTF");
 
             bf = BaseFont.createFont(pat,
                     BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
@@ -228,7 +228,7 @@ public class RepaireTools {
         Font fontChinese = null;
         try {
 
-            String pat = request.getSession().getServletContext().getRealPath("/font/simfang.ttf");
+            String pat = request.getSession().getServletContext().getRealPath("/font/STFANGSO.TTF");
 
             bf = BaseFont.createFont(pat,//仿宋
                     BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
@@ -319,6 +319,15 @@ public class RepaireTools {
 
             elements.setAlignment(Element.ALIGN_CENTER);
 
+            Image chapter = Image.getInstance(request.getSession().getServletContext().getRealPath(flowinfos.getUser().getChapter()));
+
+            chapter.scaleToFit(105,105);
+
+            //设置绝对路径
+            chapter.setAbsolutePosition(210,700);
+
+            d.add(chapter);
+
             d.add(elements);
 
             //设置对文本进行绝对定位
@@ -336,8 +345,6 @@ public class RepaireTools {
             cb.endText();
             //设置对文本的定位
 
-            Image chapter = Image.getInstance(request.getSession().getServletContext().getRealPath(flowinfos.getUser().getChapter()));
-
             Image img = Image.getInstance(zhangzong);
 
             Image a=Image.getInstance(dunit);
@@ -348,11 +355,6 @@ public class RepaireTools {
 
             //设置绝对路径
             img.setAbsolutePosition(90,360);
-
-            chapter.scaleToFit(105,105);
-
-            //设置绝对路径
-            chapter.setAbsolutePosition(210,700);
 
             //创建表格对象
             PdfPTable datatable = new PdfPTable(6);
@@ -407,8 +409,6 @@ public class RepaireTools {
             datatable.addCell(createpdfcell(img,3,1));
 
             d.add(datatable);
-
-            d.add(chapter);
 
             d.close();
 
@@ -477,6 +477,15 @@ public class RepaireTools {
 
             elements.setAlignment(Element.ALIGN_CENTER);
 
+            Image chapter = Image.getInstance(request.getSession().getServletContext().getRealPath(flowinfos.getUser().getChapter()));
+
+            chapter.scaleToFit(105,105);
+
+            //设置绝对路径
+            chapter.setAbsolutePosition(210,700);
+
+            d.add(chapter);
+
             d.add(elements);
 
             //设置对文本进行绝对定位
@@ -494,8 +503,6 @@ public class RepaireTools {
             cb.endText();
             //设置对文本的定位
 
-            Image chapter = Image.getInstance(request.getSession().getServletContext().getRealPath(flowinfos.getUser().getChapter()));
-
             Image empty = Image.getInstance(request.getSession().getServletContext().getRealPath(File.separator+"picture"+ File.separator+"signature"+File.separator+"empty.jpg"));
 
             Image img = Image.getInstance(zhangzong);
@@ -510,11 +517,6 @@ public class RepaireTools {
 
             //设置绝对路径
             img.setAbsolutePosition(90,360);
-
-            chapter.scaleToFit(105,105);
-
-            //设置绝对路径
-            chapter.setAbsolutePosition(210,700);
 
             //创建表格对象
             PdfPTable datatable = new PdfPTable(6);
@@ -573,7 +575,6 @@ public class RepaireTools {
             datatable.addCell(createpdfcell(empty,2,1));
 
             d.add(datatable);
-            d.add(chapter);
 
             d.close();
 

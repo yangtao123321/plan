@@ -244,7 +244,7 @@
 
         .tr1:hover{
 
-            background-color: rgba(240, 255, 239, 0.50);
+            background-color: #f0ffef;
 
             color:blue;
 
@@ -345,7 +345,7 @@
 
         .a:hover{
 
-            background-color: rgba(240, 255, 239, 0.50);
+            background-color: #f0ffef;
 
             color:blue;
 

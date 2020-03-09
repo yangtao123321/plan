@@ -117,7 +117,6 @@
 
                 if(person!=''&&abstract!=''&&receive!='0'&&reason!='') {//第一次校验
 
-
                     if(saveDataAry.length==0) {//第二次校验 没有添加滤芯的详情
 
                         alert("请添加采购滤芯的详情!");
@@ -133,6 +132,7 @@
                         $.ajax({
                             type:"POST",
                             url:"${pageContext.request.contextPath}/receivefilter.do",
+                            async:false,
                             dataType:"json",
                             data:{users:JSON.stringify(saveDataAry),"user.uid":uid,"filtertotle":filtertotle,"applyperson":person,"applyreason":reason,"applyabstract":abstract,"receive":receive,"applytime":startime,"buyrequires":caigouyaoqiuval,"flowid":flowid},
                             // 可以传递多个参数，但此时的users内容与另外一个参数：aa 的内容一起传递，所以后台解析为字符串

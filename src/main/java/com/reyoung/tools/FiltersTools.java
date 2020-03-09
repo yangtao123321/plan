@@ -255,6 +255,15 @@ public class FiltersTools {
 
             elements.setAlignment(Element.ALIGN_CENTER);
 
+            Image chapter = Image.getInstance(request.getSession().getServletContext().getRealPath(flowinfos.getUser().getChapter()));
+
+            chapter.scaleToFit(105,105);
+
+            //设置绝对路径
+            chapter.setAbsolutePosition(210,700);
+
+            d.add(chapter);
+
             d.add(elements);
 
             //设置对文本进行绝对定位
@@ -273,7 +282,6 @@ public class FiltersTools {
             //设置对文本的定位
 
             //各单位的章
-            Image chapter = Image.getInstance(request.getSession().getServletContext().getRealPath(flowinfos.getUser().getChapter()));
 
             Image img = Image.getInstance(zhangzong);
 
@@ -281,16 +289,11 @@ public class FiltersTools {
 
             Image zhangna1=Image.getInstance(zhangna);
 
-            img.scaleToFit(65, 65);
+            img.scaleToFit(70, 70);
 
             a.scaleToFit(70,70);
 
-            zhangna1.scaleToFit(50,50);
-
-            chapter.scaleToFit(105,105);
-
-            //设置绝对路径
-            chapter.setAbsolutePosition(210,700);
+            zhangna1.scaleToFit(70,70);
 
             //创建表格对象
             PdfPTable datatable = new PdfPTable(8);
@@ -363,8 +366,6 @@ public class FiltersTools {
             datatable.addCell(createpdfcell(img, 3, 1));
 
             d.add(datatable);
-
-            d.add(chapter);
 
             d.close();
 

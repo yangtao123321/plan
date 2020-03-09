@@ -374,6 +374,15 @@ public class AttentTools {
 
             elements.setAlignment(Element.ALIGN_CENTER);
 
+            Image chapter = Image.getInstance(request.getSession().getServletContext().getRealPath(flowinfos.getUser().getChapter()));
+
+            chapter.scaleToFit(105,105);
+
+            //设置绝对路径
+            chapter.setAbsolutePosition(210,700);
+
+            d.add(chapter);
+
             d.add(elements);
 
             //设置对文本进行绝对定位
@@ -392,7 +401,6 @@ public class AttentTools {
             //设置对文本的定位
 
             //各单位的章
-            Image chapter = Image.getInstance(request.getSession().getServletContext().getRealPath(flowinfos.getUser().getChapter()));
 
             Image img = Image.getInstance(zhangzong);
 
@@ -404,11 +412,6 @@ public class AttentTools {
 
             //设置绝对路径
             img.setAbsolutePosition(90,360);
-
-            chapter.scaleToFit(105,105);
-
-            //设置绝对路径
-            chapter.setAbsolutePosition(210,700);
 
             //创建表格对象
             PdfPTable datatable = new PdfPTable(6);
@@ -513,8 +516,6 @@ public class AttentTools {
 
             d.add(datatable);
 
-            d.add(chapter);
-
             d.close();
 
         }catch (Exception e) {
@@ -583,6 +584,15 @@ public class AttentTools {
 
             elements.setAlignment(Element.ALIGN_CENTER);
 
+            Image chapter = Image.getInstance(request.getSession().getServletContext().getRealPath(flowinfos.getUser().getChapter()));
+
+            chapter.scaleToFit(105,105);
+
+            //设置绝对路径
+            chapter.setAbsolutePosition(210,700);
+
+            d.add(chapter);
+
             d.add(elements);
 
             //设置对文本进行绝对定位
@@ -601,7 +611,6 @@ public class AttentTools {
             //设置对文本的定位
 
             //各单位的章
-            Image chapter = Image.getInstance(request.getSession().getServletContext().getRealPath(flowinfos.getUser().getChapter()));
 
 
             Image img = Image.getInstance(zhangzong);
@@ -618,11 +627,6 @@ public class AttentTools {
 
             //设置绝对路径
             img.setAbsolutePosition(90,360);
-
-            chapter.scaleToFit(105,105);
-
-            //设置绝对路径
-            chapter.setAbsolutePosition(210,700);
 
             PdfPTable datatable = Getdatatable.attainpdfptable();
 
@@ -716,8 +720,6 @@ public class AttentTools {
             d.add(datatable);
 
             d.add(datatable1);
-
-            d.add(chapter);
 
             d.close();
 

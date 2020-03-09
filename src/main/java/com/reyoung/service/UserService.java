@@ -25,6 +25,8 @@ public interface UserService {
 
     public List<User> findunitbyuser(User user);
 
+    public List<User> finduserdunitlist(User user);
+
     public User finduserbyuid(Integer uid);
 
     public Integer updatedefaultpassword(User user);
